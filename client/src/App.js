@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { useState, useEffect } from "react";
 import imgUser from './images/7309681.jpg';
 
-const socket = io(process.env.PORT || 4000);
+const socket = io("/");
 
 function App() {
   const [message, setMessage] = useState('');
