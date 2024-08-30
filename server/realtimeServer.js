@@ -5,7 +5,7 @@ export default function httpServer(server){
 
     const io = new SocketServer(server,{
         cors: {
-            origin: 'http://localhost:3000',
+            origin: '*',
         }
     });
 
