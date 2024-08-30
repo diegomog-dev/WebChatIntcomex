@@ -14,6 +14,12 @@ header {
   padding: 7px;
 }
 
+.instructions{
+  font-size: 1.2rem;
+  display: flex;
+  padding: 20px;
+}
+
 .button-container {
   display: flex;
   justify-content: center;

@@ -55,29 +55,37 @@ function App() {
         <h1>WebChat Intcomex</h1>
       </header>
       
-      <div id='all-messages'>
-        {messages.map((message, index) => (
-          <div key={index}>
-            <div className='message'>
-              <div className='image-container'>
-                <img src={imgUser} alt='imgUser'/>
-              </div>
-              <div className='message-body'>
-                <div className='user-info'>
-                  <span className='username'>{message.from} </span>              
+      <main>
+        <div className='instructions'>
+          <p>Por favor, escribe la consulta sobre productos que quieres realizar. 
+            Escribe el nombre de la categoría o subcategoría que quieres consultar, seguido de la cantidad de productos y, 
+            finalmente, el número de la página, todo separado por una coma. Sigue el siguiente ejemplo: Industrial, 10, 1.
+          </p>
+        </div>
+        <div id='all-messages'>
+          {messages.map((message, index) => (
+            <div key={index}>
+              <div className='message'>
+                <div className='image-container'>
+                  <img src={imgUser} alt='imgUser'/>
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: message.body }} />
+                <div className='message-body'>
+                  <div className='user-info'>
+                    <span className='username'>{message.from} </span>              
+                  </div>
+                  <div dangerouslySetInnerHTML={{ __html: message.body }} />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className='send-message'>
-        <form onSubmit={handleSubmit}>
-          <input type="text" onChange={e => setMessage(e.target.value)} value={message}/>
-          <button className='btn secondary'>Enviar</button>
-        </form>
-      </div>      
+          ))}
+        </div>
+        <div className='send-message'>
+          <form onSubmit={handleSubmit}>
+            <input type="text" onChange={e => setMessage(e.target.value)} value={message}/>
+            <button className='btn secondary'>Enviar</button>
+          </form>
+        </div>
+      </main>            
     </div>
   );
 }
