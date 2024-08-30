@@ -1,6 +1,8 @@
 import './App.css';
+import './css/chat.css';
 import io from 'socket.io-client';
 import { useState, useEffect } from "react";
+import imgUser from './images/7309681.jpg';
 
 const socket = io('http://localhost:4000');
 
@@ -29,10 +31,10 @@ function App() {
           
           return {
               from: message.from,
-              body: `<div>Nombre del Producto: ${product.product_name}</div>
-                    <div>SKU: ${product.sku}</div>
-                    <div>MPN: ${product.mpn}</div>
-                    <div>Atributos: ${attributes}</div>`
+              body: `<div><p>Nombre del Producto: ${product.product_name}</p>
+                    <p>SKU: ${product.sku}</p>
+                    <p>MPN: ${product.mpn}</p>
+                    <p>Atributos: ${attributes}</p></div>`
           };
       });
 
@@ -49,16 +51,33 @@ function App() {
   
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input type="text" onChange={e => setMessage(e.target.value)} value={message}/>
-        <button>send</button>
-      </form>
-      {messages.map((message, index) => (
-        <div key={index}>
-          <p>{message.from}: </p>
-          <div dangerouslySetInnerHTML={{ __html: message.body }} />
-        </div>
-      ))}
+      <header>
+        <h1>WebChat Intcomex</h1>
+      </header>
+      
+      <div id='all-messages'>
+        {messages.map((message, index) => (
+          <div key={index}>
+            <div className='message'>
+              <div className='image-container'>
+                <img src={imgUser} alt='imgUser'/>
+              </div>
+              <div className='message-body'>
+                <div className='user-info'>
+                  <span className='username'>{message.from} </span>              
+                </div>
+                <div dangerouslySetInnerHTML={{ __html: message.body }} />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className='send-message'>
+        <form onSubmit={handleSubmit}>
+          <input type="text" onChange={e => setMessage(e.target.value)} value={message}/>
+          <button className='btn secondary'>Enviar</button>
+        </form>
+      </div>      
     </div>
   );
 }
